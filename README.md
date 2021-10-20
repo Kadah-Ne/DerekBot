@@ -31,6 +31,8 @@ Toutes les commandes sont éxécutées avec le préfix (!).
 les <> sont les parametres obligatoires.
 les [] sont optionnels.
 
+***
+
 ### Basiques
 
 > hello \[user].
@@ -47,6 +49,8 @@ Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.
 
 Affiche les détails d'une commande.
 
+***
+
 ### Emotes
 
 > addMoji \<emote1> \<emote2> ... \<emoteN>.
@@ -61,6 +65,8 @@ Demande a DerekBot d'afficher la liste des emotes qu'il a en mémoire.
 
 Demande a DerekBot d'afficher une emote aléatoire parmis celles qu'il a en mémoire.
 
+***
+
 ### Quotes
 
 > derekNorris.
@@ -74,6 +80,9 @@ DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.
 > derekBall [Message]
 
 Derek repond a votre question.
+
+
+***
 
 ### CHAOS
 
