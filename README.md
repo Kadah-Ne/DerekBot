@@ -57,6 +57,7 @@ Affiche les détails d'une commande.
 
 Jouez au mastermind avec DerekBot, deviner le nombre a 4 chiffre de XavBot et vous avez gagné. difficultés : 1 = Facile | 2 = Normal |
 3 = Difficile | 4 = Impossible.
+X = Mauvais chiffre | ~ = Bon chiffre pas au bon endroit | O = Bon chiffre au bon endroit.
 
 > meteo \<adresse>.
 
@@ -90,8 +91,7 @@ DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.
 
 > derekBall [Message]
 
-Derek repond a votre question.
-
+Posez une question a Derekbot et il vous répondra avec toute sa sagesse.
 
 ***
 
