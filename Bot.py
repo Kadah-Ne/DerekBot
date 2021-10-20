@@ -9,11 +9,12 @@ import os
 import requests
 import json
 from datetime import datetime, datetime
+import time
 
 
 intents = discord.Intents.all()
 load_dotenv(dotenv_path="config")
-bot = commands.Bot(command_prefix='!', description = "Notre Derek",intents=intents)
+bot = commands.Bot(command_prefix='&', description = "Notre Derek",intents=intents)
 
 
 
@@ -142,7 +143,7 @@ async def on_ready():
     print("Derekbot est dans la place")
 
 
-@bot.command(name = "meteo", help = "La meteo de Derek")
+@bot.command(name = "meteo", help = "Derek vous donne la météo pour les 4 prochaines heures a l'adresse entrée")
 async def Meteo(ctx, * address:str):
     query=""
     addressMSG=""
@@ -166,14 +167,14 @@ async def Meteo(ctx, * address:str):
 
 
 
-@bot.command(name = "derekNorris", help = "Livre de blagues sur chuck norris")
+@bot.command(name = "derekNorris", help = "DerekBot vous racontera une blague sur chuck norris.")
 async def DerekNorris(ctx):
     page = requests.get("https://api.chucknorris.io/jokes/random")
     liste = page.json()
 
     await ctx.channel.send(liste['value'])
 
-@bot.command(name = "derekSagesse", help = "Besoin d'aide pour quelque chose ? DerekBot peut partager avec vous son immense sagesse")
+@bot.command(name = "derekSagesse", help = "DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.")
 async def Xagesse(ctx):
     page = requests.get("https://api.kanye.rest/")
     liste = page.json()
@@ -181,19 +182,19 @@ async def Xagesse(ctx):
     await ctx.channel.send(liste['quote'])
 
 
-@bot.command(name = "hello", help = "DerekBot vous dit bonjour")
+@bot.command(name = "hello", help = "Affiche un message de bonjour a l'utilisateur mentionné. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.")
 async def hello(ctx, user : discord.Member = None):
     user = user or ctx.author
     await ctx.channel.send("Salut "+user.name+" j'aime bien ta PP")
     await ctx.channel.send(user.avatar_url)    
 
-@bot.command(name = "daleatoire", help = "Génére une emote aléatoire parmis la liste des emotes de Derekbot")
+@bot.command(name = "daleatoire", help = "Demande a DerekBot d'afficher une emote aléatoire parmis celles qu'il a en mémoire.")
 async def randomEmote(ctx):
     number = randint(0,len(EmoteList)-1)
     await ctx.channel.send(EmoteList[number])
 
 
-@bot.command(name = "addMoji", help = "Ajoute un emoji a la liste de Xavbot pour qu'il puisse l'utiliser /!\ mettre des espaces entres les emotes")
+@bot.command(name = "addMoji", help = "Permet d'ajouter une emote a la liste des emotes utilisables par DerekBot. /!\ les differentes emotes doivent êtres séparées par un espace.")
 async def addMoji(ctx, * emojies: discord.Emoji):
     for emoji in emojies:
         mojiId = str(emoji)
@@ -207,7 +208,7 @@ async def addMoji(ctx, * emojies: discord.Emoji):
 
     emoteListUpdate()
 
-@bot.command(name = "mojiesList",help="Affiche la liste des emojies dans la liste de Derekbot")
+@bot.command(name = "mojiesList",help="Demande a DerekBot d'afficher la liste des emotes qu'il a en mémoire.")
 async def mojiesList(ctx):
     message = "Voici la liste des emojies customs que je peux utilisé : "
     for mojies in EmoteList:
@@ -268,14 +269,17 @@ async def magicDerekBall(ctx,* messageUser: str):
 
 
 
-@bot.command(name = "ping")
+@bot.command(name = "ping",help="Mentionne un nombre aléatoire de fois l'utilisateur. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible (mais pourquoi vous feriez ça ?).")
 async def Ping(ctx, user : discord.Member = None):
     user = user or ctx.author
-    for i in range(randint(0,10)):
-        await ctx.channel.send(user.mention)
+    await ctx.message.delete()
+    for i in range(randint(0,25)):
+        await ctx.channel.send(f'{user.mention} tu pues',delete_after=0)
+        time.sleep(1)
 
 
-@bot.command(name = "spotify")
+
+@bot.command(name = "spotify",help = "Affiche le status spotify de l'utilisateur si il/elle est actif/ve sur spotify. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.")
 async def test(ctx, user :discord.Member=None):
     user = user or ctx.author
     for activity in user.activities:
@@ -285,7 +289,7 @@ async def test(ctx, user :discord.Member=None):
 
 
 #Rick Rollette Russe
-@bot.command(name = "russe")
+@bot.command(name = "russe",help = "Fais un tir de roullette russe.")
 async def Roulette(ctx):
     dmChannel = await ctx.author.create_dm()
     i = randint(1,6)
@@ -326,7 +330,7 @@ def masterMind(playerNumbers,guessNumbers):
 
 
 #Master Mind again
-@bot.command(name = "jeu", help = "Jouez au mastermind avec XavBot, deviner le nombre a 4 chiffre de XavBot et vous avez gagné. difficultés : 1 = Facile | 2 = Normal | 3 = Difficile | 4 = Impossible")
+@bot.command(name = "jeu", help = "Jouez au mastermind avec DerekBot, deviner le nombre a 4 chiffre de XavBot et vous avez gagné. difficultés : 1 = Facile | 2 = Normal | 3 = Difficile | 4 = Impossible. X = Mauvais chiffre | ~ = Bon chiffre pas au bon endroit | O = Bon chiffre au bon endroit.")
 async def jeu(ctx,diff : int):
     if diff == 1:
         vieMax = 15
@@ -354,10 +358,11 @@ async def jeu(ctx,diff : int):
     def check(message):
         try: 
             int(message.content)
+            lon = len(message.content)
             flag = True
         except:
             flag = False
-        return message.author == ctx.author and flag
+        return message.author == ctx.author and flag and lon <=4
     while gameFlag:
         try:
             await ctx.message.channel.send(f"Nombre de vies : {vie}\nEntrez 4 chiffres : ")
