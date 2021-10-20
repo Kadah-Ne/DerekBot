@@ -282,9 +282,18 @@ async def Ping(ctx, user : discord.Member = None):
 @bot.command(name = "spotify",help = "Affiche le status spotify de l'utilisateur si il/elle est actif/ve sur spotify. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.")
 async def test(ctx, user :discord.Member=None):
     user = user or ctx.author
+    flag = False
     for activity in user.activities:
         if isinstance(activity, Spotify):
             await ctx.send(f"{user} est en train d'écouter {activity.title} par {activity.artists}")
+            flag = True
+            break
+
+    if not flag:
+        await ctx.send(f"{user} n'ecoute pas de musique, c'est un peu triste")
+
+        
+
         
 
 
