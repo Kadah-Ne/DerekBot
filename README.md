@@ -28,7 +28,24 @@ Les 4 ci-dessous sont les seules neccessaires pour faire tourné cette chose.
 Ci-dessous vous trouverez une list des commandes du bot trier par familles.
 Toutes les commandes sont éxécutées avec le préfix (!).
 
+les <> sont les parametres obligatoires.
+les [] sont optionnels.
+
 ### Basiques
+
+> hello \[user].
+
+Affiche un message de bonjour a l'utilisateur mentionné.
+Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.
+
+> spotify \[user].
+
+Affiche le status spotify de l'utilisateur si il/elle est actif/ve sur spotify.
+Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.
+
+> help \[commande].
+
+Affiche les détails d'une commande.
 
 ### Emotes
 
@@ -44,4 +61,27 @@ Demande a DerekBot d'afficher la liste des emotes qu'il a en mémoire.
 
 Demande a DerekBot d'afficher une emote aléatoire parmis celles qu'il a en mémoire.
 
+### Quotes
 
+> derekNorris.
+
+DerekBot vous racontera une blague sur chuck norris.
+
+> derekSagesse.
+
+DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.
+
+> derekBall [Message]
+
+Derek repond a votre question.
+
+### CHAOS
+
+> ping [user]
+
+Mentionne un nombre aléatoire de fois l'utilisateur.
+Par defaut personne n'est mentionné, l'auteur de la commande sera la cible (mais pourquoi vous feriez ça ?).
+
+> russe
+
+Fais un tir de roullette russe.
