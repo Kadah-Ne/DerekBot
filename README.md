@@ -8,7 +8,7 @@ stupides ?
 Si vous etes prêts sortez vos
 > Kitchen guns
 et allons voir ce bot de plus près
-![Kitchen Gun](https://tenor.com/RvjR.gif)
+![Kitchen Gun](https://c.tenor.com/ocEiJ47ed9wAAAAC/kitchen-gun.gif)
 
 ## Prérequis a installer
 
