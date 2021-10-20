@@ -8,7 +8,7 @@ stupides ?
 Si vous etes prêts sortez vos
 > Kitchen guns
 et allons voir ce bot de plus près
-![Kitchen Gun](https://gfycat.com/grotesquepreciouskiwi)
+![Kitchen Gun](https://tenor.com/RvjR.gif)
 
 ## Prérequis a installer
 
