@@ -1,11 +1,11 @@
 #Importation des librairies nécessaires
 import discord
 from discord.ext import commands
+from discord import Spotify
 from dotenv import load_dotenv
 from random import *
 import os
 import requests
-from discord import Spotify
 import json
 from datetime import datetime, datetime
 
