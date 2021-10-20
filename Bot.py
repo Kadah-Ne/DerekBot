@@ -142,7 +142,7 @@ async def on_ready():
     print("Derekbot est dans la place")
 
 
-@bot.command(name = "Meteo", help = "La meteo de Derek")
+@bot.command(name = "meteo", help = "La meteo de Derek")
 async def Meteo(ctx, * address:str):
     query=""
     addressMSG=""
@@ -166,14 +166,14 @@ async def Meteo(ctx, * address:str):
 
 
 
-@bot.command(name = "DerekNorris", help = "Livre de blagues sur chuck norris")
+@bot.command(name = "derekNorris", help = "Livre de blagues sur chuck norris")
 async def DerekNorris(ctx):
     page = requests.get("https://api.chucknorris.io/jokes/random")
     liste = page.json()
 
     await ctx.channel.send(liste['value'])
 
-@bot.command(name = "Xagesse", help = "Besoin d'aide pour quelque chose ? DerekBot peut partager avec vous son immense sagesse")
+@bot.command(name = "derekSagesse", help = "Besoin d'aide pour quelque chose ? DerekBot peut partager avec vous son immense sagesse")
 async def Xagesse(ctx):
     page = requests.get("https://api.kanye.rest/")
     liste = page.json()
@@ -181,13 +181,13 @@ async def Xagesse(ctx):
     await ctx.channel.send(liste['quote'])
 
 
-@bot.command(name = "Hello", help = "DerekBot vous dit bonjour")
+@bot.command(name = "hello", help = "DerekBot vous dit bonjour")
 async def hello(ctx, user : discord.Member = None):
     user = user or ctx.author
     await ctx.channel.send("Salut "+user.name+" j'aime bien ta PP")
     await ctx.channel.send(user.avatar_url)    
 
-@bot.command(name = "Daleatoire", help = "Génére une emote aléatoire parmis la liste des emotes de Derekbot")
+@bot.command(name = "daleatoire", help = "Génére une emote aléatoire parmis la liste des emotes de Derekbot")
 async def randomEmote(ctx):
     number = randint(0,len(EmoteList)-1)
     await ctx.channel.send(EmoteList[number])
@@ -236,7 +236,7 @@ def createRandomDeterList():
     dico = longAsFStringWord.split(' ')
     return dico
 
-@bot.command(name = "DerekBall", help = "Posez une question a Derekbot et il vous répondra avec toute sa sagesse.")
+@bot.command(name = "derekBall", help = "Posez une question a Derekbot et il vous répondra avec toute sa sagesse.")
 async def magicDerekBall(ctx,* messageUser: str):
     messageRandom =""
     message = ""
@@ -268,14 +268,14 @@ async def magicDerekBall(ctx,* messageUser: str):
 
 
 
-@bot.command(name = "Ping")
+@bot.command(name = "ping")
 async def Ping(ctx, user : discord.Member = None):
     user = user or ctx.author
     for i in range(randint(0,10)):
         await ctx.channel.send(user.mention)
 
 
-@bot.command(name = "Spotify")
+@bot.command(name = "spotify")
 async def test(ctx, user :discord.Member=None):
     user = user or ctx.author
     for activity in user.activities:
@@ -285,7 +285,7 @@ async def test(ctx, user :discord.Member=None):
 
 
 #Rick Rollette Russe
-@bot.command(name = "Russe")
+@bot.command(name = "russe")
 async def Roulette(ctx):
     dmChannel = await ctx.author.create_dm()
     i = randint(1,6)
