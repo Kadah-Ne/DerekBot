@@ -51,6 +51,17 @@ Affiche les détails d'une commande.
 
 ***
 
+### Utiles
+
+> jeu \<difficulté>.
+
+Jouez au mastermind avec DerekBot, deviner le nombre a 4 chiffre de XavBot et vous avez gagné. difficultés : 1 = Facile | 2 = Normal |
+3 = Difficile | 4 = Impossible.
+
+> meteo \<adresse>.
+
+Derek vous donne la météo pour les 4 prochaines heures a l'adresse entrée
+
 ### Emotes
 
 > addMoji \<emote1> \<emote2> ... \<emoteN>.
