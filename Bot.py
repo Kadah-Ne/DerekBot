@@ -1,5 +1,6 @@
 #Importation des librairies nécessaires
 import discord
+import asyncio
 from discord.ext import commands
 from discord import Spotify
 from dotenv import load_dotenv
@@ -299,8 +300,9 @@ async def Roulette(ctx):
 
 
 
-def masterMind(playerNumbers,guessNumbers):
 
+
+def masterMind(playerNumbers,guessNumbers):
     correction = ['X','X','X','X']
     for i in range(len(playerNumbers)):
 
@@ -311,15 +313,15 @@ def masterMind(playerNumbers,guessNumbers):
             for j in guessNumbers:
                 if int(playerNumbers[i])==j:
                     occurence +=1
-            if occurence == 1:
-                isAlreadyset = False
+            if occurence >= 1:
                 for j in range(len(guessNumbers)):
                     if int(playerNumbers[i] == guessNumbers[j] and correction[j] == 'O'):
-                        isAlreadyset = True
-                if not isAlreadyset:
+                        occurence-=1
+                if occurence>=1:
                     correction[i] = '~'
             
     return correction
+
 
 
 
@@ -349,19 +351,31 @@ async def jeu(ctx,diff : int):
     d = randint(0,9)
     guessNumbers = [a,b,c,d]
     gameFlag = True
+    def check(message):
+        try: 
+            int(message.content)
+            flag = True
+        except:
+            flag = False
+        return message.author == ctx.author and flag
     while gameFlag:
-        await ctx.message.channel.send(f"Nombre de vies : {vie}\nEntrez 4 chiffres : ")
-        playerString = await bot.wait_for("message",check=lambda message : message.author == ctx.author,timeout=30)
-        correction =  masterMind(playerString.content,guessNumbers)
-        await ctx.channel.send(correction)
-        if correction == ['O','O','O','O']:
+        try:
+            await ctx.message.channel.send(f"Nombre de vies : {vie}\nEntrez 4 chiffres : ")
+            playerString = await bot.wait_for("message",check=check,timeout=30)
+            correction =  masterMind(playerString.content,guessNumbers)
+            await ctx.channel.send(correction)
+            if correction == ['O','O','O','O']:
+                gameFlag = False
+                await ctx.message.channel.send(f"GG, nombre de tentatives : {vieMax - vie}")
+                randomEmote(ctx)
+            elif vie <= 0:
+                gameFlag = False
+                await ctx.message.channel.send(f"Dommage la réponse était : {guessNumbers}")
+            vie -=1  
+        except asyncio.TimeoutError:
+            await ctx.message.channel.send(f"Temps écoulé")
             gameFlag = False
-            await ctx.message.channel.send(f"GG, nombre de tentatives : {vieMax - vie}")
-            randomEmote(ctx)
-        elif vie <= 0:
-            gameFlag = False
-            await ctx.message.channel.send(f"Dommage la réponse était : {guessNumbers}")
-        vie -=1      
+
     
     
 EmoteList = []
