@@ -143,7 +143,7 @@ async def on_ready():
     print("Derekbot est dans la place")
 
 
-@bot.command(name = "meteo", help = "Derek vous donne la météo pour les 4 prochaines heures a l'adresse entrée")
+@bot.command(name = "meteo", help = "Derek vous donne la météo pour les 4 prochaines heures a l'adresse entrée", aliases=['Meteo'])
 async def Meteo(ctx, * address:str):
     query=""
     addressMSG=""
@@ -167,14 +167,14 @@ async def Meteo(ctx, * address:str):
 
 
 
-@bot.command(name = "derekNorris", help = "DerekBot vous racontera une blague sur chuck norris.")
+@bot.command(name = "derekNorris", help = "DerekBot vous racontera une blague sur chuck norris.", aliases=['DerekNorris','dereknorris','Dereknorris','norris'])
 async def DerekNorris(ctx):
     page = requests.get("https://api.chucknorris.io/jokes/random")
     liste = page.json()
 
     await ctx.channel.send(liste['value'])
 
-@bot.command(name = "derekSagesse", help = "DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.")
+@bot.command(name = "derekSagesse", help = "DerekBot vous aidera dans votre vie avec une citation inspirante de Kayne West.", aliases=['dereksagesse','DerekSagesse','Dereksagesse','sagesse'])
 async def Xagesse(ctx):
     page = requests.get("https://api.kanye.rest/")
     liste = page.json()
@@ -188,13 +188,13 @@ async def hello(ctx, user : discord.Member = None):
     await ctx.channel.send("Salut "+user.name+" j'aime bien ta PP")
     await ctx.channel.send(user.avatar_url)    
 
-@bot.command(name = "daleatoire", help = "Demande a DerekBot d'afficher une emote aléatoire parmis celles qu'il a en mémoire.")
+@bot.command(name = "daleatoire", help = "Demande a DerekBot d'afficher une emote aléatoire parmis celles qu'il a en mémoire.", aliases=['Daleatoire'])
 async def randomEmote(ctx):
     number = randint(0,len(EmoteList)-1)
     await ctx.channel.send(EmoteList[number])
 
 
-@bot.command(name = "addMoji", help = "Permet d'ajouter une emote a la liste des emotes utilisables par DerekBot. /!\ les differentes emotes doivent êtres séparées par un espace.")
+@bot.command(name = "addMoji", help = "Permet d'ajouter une emote a la liste des emotes utilisables par DerekBot. /!\ les differentes emotes doivent êtres séparées par un espace.", aliases=['add'])
 async def addMoji(ctx, * emojies: discord.Emoji):
     for emoji in emojies:
         mojiId = str(emoji)
@@ -208,9 +208,9 @@ async def addMoji(ctx, * emojies: discord.Emoji):
 
     emoteListUpdate()
 
-@bot.command(name = "mojiesList",help="Demande a DerekBot d'afficher la liste des emotes qu'il a en mémoire.")
+@bot.command(name = "mojiesList",help="Demande a DerekBot d'afficher la liste des emotes qu'il a en mémoire.", aliases=['list'])
 async def mojiesList(ctx):
-    message = "Voici la liste des emojies customs que je peux utilisé : "
+    message = "Voici la liste des emojies customs que je peux utiliser : "
     for mojies in EmoteList:
         message += (mojies +" ")
     await ctx.channel.send(message)
@@ -237,7 +237,7 @@ def createRandomDeterList():
     dico = longAsFStringWord.split(' ')
     return dico
 
-@bot.command(name = "derekBall", help = "Posez une question a Derekbot et il vous répondra avec toute sa sagesse.")
+@bot.command(name = "derekBall", help = "Posez une question a Derekbot et il vous répondra avec toute sa sagesse.", aliases=['DerekBall','derekball','Derekball','ball'])
 async def magicDerekBall(ctx,* messageUser: str):
     messageRandom =""
     message = ""
@@ -279,7 +279,7 @@ async def Ping(ctx, user : discord.Member = None):
 
 
 
-@bot.command(name = "spotify",help = "Affiche le status spotify de l'utilisateur si il/elle est actif/ve sur spotify. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.")
+@bot.command(name = "spotify",help = "Affiche le status spotify de l'utilisateur si il/elle est actif/ve sur spotify. Par defaut personne n'est mentionné, l'auteur de la commande sera la cible.", aliases=['Ping'])
 async def test(ctx, user :discord.Member=None):
     user = user or ctx.author
     flag = False
@@ -298,7 +298,7 @@ async def test(ctx, user :discord.Member=None):
 
 
 #Rick Rollette Russe
-@bot.command(name = "russe",help = "Fais un tir de roullette russe.")
+@bot.command(name = "russe",help = "Fais un tir de roullette russe.", aliases=['Russe'])
 async def Roulette(ctx):
     dmChannel = await ctx.author.create_dm()
     i = randint(1,6)
@@ -349,14 +349,14 @@ async def jeu(ctx,diff : int):
     elif diff == 2:
         vieMax = 10
         vie = 10
-        await ctx.message.channel.send("Difficulté normale choisie : nombre de vies = 10")
+        await ctx.message.channel.send("Difficulté normale choisie : nombre de vies = 10",delete_after=5)
     elif diff == 3:
         vieMax = 5
         vie = 5
-        await ctx.message.channel.send("Difficulté difficile  choisie : nombre de vies = 5")
+        await ctx.message.channel.send("Difficulté difficile  choisie : nombre de vies = 5",delete_after=5)
     elif diff >=4:
         vie = 1
-        await ctx.message.channel.send("Difficulté impossible choisie : nombre de vies = 1")
+        await ctx.message.channel.send("Difficulté impossible choisie : nombre de vies = 1",delete_after=5)
     user = ctx.author
     a = randint(0,9)
     b = randint(0,9)
@@ -374,20 +374,20 @@ async def jeu(ctx,diff : int):
         return message.author == ctx.author and flag and lon <=4
     while gameFlag:
         try:
-            await ctx.message.channel.send(f"Nombre de vies : {vie}\nEntrez 4 chiffres : ")
+            await ctx.message.channel.send(f"Nombre de vies : {vie}\nEntrez 4 chiffres : ",delete_after=30)
             playerString = await bot.wait_for("message",check=check,timeout=30)
             correction =  masterMind(playerString.content,guessNumbers)
             await ctx.channel.send(correction)
             if correction == ['O','O','O','O']:
                 gameFlag = False
-                await ctx.message.channel.send(f"GG, nombre de tentatives : {vieMax - vie}")
+                await ctx.message.channel.send(f"GG, nombre de tentatives : {vieMax - vie}",delete_after=5)
                 randomEmote(ctx)
             elif vie <= 0:
                 gameFlag = False
-                await ctx.message.channel.send(f"Dommage la réponse était : {guessNumbers}")
+                await ctx.message.channel.send(f"Dommage la réponse était : {guessNumbers}",delete_after=5)
             vie -=1  
         except asyncio.TimeoutError:
-            await ctx.message.channel.send(f"Temps écoulé")
+            await ctx.message.channel.send(f"Temps écoulé",delete_after=5)
             gameFlag = False
 
     
