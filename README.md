@@ -25,8 +25,8 @@ Les 4 ci-dessous sont les seules neccessaires pour faire tourné cette chose.
 
 ## Fonctions
 
-Ci-dessous vous trouverez une list des commandes du bot trier par familles.
-Toutes les commandes sont éxécutées avec le préfix (!).
+Ci-dessous vous trouverez une liste des commandes du bot triées par familles.
+Toutes les commandes sont éxécutées avec le préfix (&).
 
 les <> sont les parametres obligatoires.
 les [] sont optionnels.
