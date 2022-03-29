@@ -1,5 +1,9 @@
 # DerekBot
 
+## Attention 
+
+Ce bot discord a été créé dans le but d'un cour de python, c'est donc mon tout premier bot, des bugs sont a prévoir.
+
 ## Description du bot
 
 DerekBot comme son homologue Derek Bum aime le chaos, et quoi de mieux pour faire regner le chaos qu'un bot stupide avec des fonctions
